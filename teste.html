@@ -1,0 +1,29 @@
+<form method="post" action="teste.php">
+
+<input id="cep" name="cep" onchange="onMuda()" value="1025130"	/>
+<input id="endereco" name="endereco" />
+
+<button>envia</button>
+</form>
+	<script src='javascripts/jquery-1.8.3.min.js' type='text/javascript'></script>
+<script>
+var url = "http://api.postmon.com.br/v1/cep/";
+var cep = "11025003";
+
+
+
+
+function onShowLogradouro(data) {
+    $('#endereco').val(data.logradouro);
+
+}
+$.getJSON(url + cep).done(onShowLogradouro);
+
+function onMuda(data) {
+	// $('#cep').val();
+	// console.log($('#cep').val());
+	var cepnovo = $('#cep').val();
+$('#endereco').val($.getJSON(url + cepnovo).done(onShowLogradouro));
+	console.log(cepnovo);	
+}
+</script>
